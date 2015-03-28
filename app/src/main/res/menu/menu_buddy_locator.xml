@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="appers.com.buddytracker.BuddyLocator">
+    <item android:id="@+id/refreshLocation"
+        android:icon="@drawable/refresh_location"
+        android:title="Refresh"
+        android:orderInCategory="75"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/addBuddy"
+        android:icon="@drawable/addbuddy"
+        android:title="Add"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+</menu>
