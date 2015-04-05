@@ -1,6 +1,8 @@
 package appers.com.buddytracker;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 /**
  * Created by User on 3/27/2015.
@@ -9,14 +11,21 @@ public class BuddyTrackerApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        if (loadPreference()) {
+            //Go to Buddylocator page
+        }else {
+            //go to reg page
+        }
+    }
 
-        /*
-        1. open db connection and Create a table (user if not present in db)
-        2. Query the user table and get the row count
-        3. if row count equals to 1, show BuddyLocator page
-        4. else show JoinUs page
-         */
-
+    public boolean loadPreference() {
+        SharedPreferences pref = getApplicationContext()
+                .getSharedPreferences("User", Context.MODE_PRIVATE);
+        if (pref.getString("user",null)== null){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     @Override
