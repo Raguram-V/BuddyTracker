@@ -3,9 +3,10 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".JoinUs">
-
-
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".JoinUs"
+    android:background="@drawable/color"
+    >
 
     <EditText
         android:layout_width="match_parent"
@@ -30,23 +31,45 @@
         android:maxLength="20"
         android:hint="Enter your Display Name"/>
 
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toggleButton"
+        android:textOff="No"
+        android:textOn="Yes"
+        android:text="Share Location"
+        android:layout_centerVertical="true"
+        android:layout_alignEnd="@+id/editDisplayName" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Join Us"
         android:id="@+id/btnJoin"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/toggleButton"
+        android:layout_marginTop="75dp"
+        android:layout_centerHorizontal="true"
+    />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Buddies"
         android:id="@+id/btnAddBuddies"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/toggleButton"
+        android:layout_marginTop="75dp"
         android:layout_centerHorizontal="true"
         android:visibility="gone"
-        />
+    />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Share My Location"
+        android:id="@+id/textLocation"
+        android:layout_marginLeft="38dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
