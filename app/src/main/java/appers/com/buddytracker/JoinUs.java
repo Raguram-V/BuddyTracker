@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -26,6 +27,7 @@ public class JoinUs extends ActionBarActivity  {
     ToggleButton btnShareLocation;
 
     ProgressDialog mProgressDialog;
+    //LayoutInflater inflater = getLayoutInflater();
 
     //String url = "http://jc305806.studentweb.jcu.edu.sg/BuddyTracker/buddy_insert.php?";
 
@@ -49,11 +51,6 @@ public class JoinUs extends ActionBarActivity  {
             btnJoinUs.setOnClickListener(new View.OnClickListener() {
                                              @Override
                                              public void onClick(View v) {
-                                                 InputMethodManager keypad = (InputMethodManager) getSystemService
-                                                         (INPUT_METHOD_SERVICE);
-                                                 if(keypad.isAcceptingText()) { // verify if the soft keyboard is open
-                                                     keypad.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-                                                 }
 
                                                  String url = "http://jc305806.studentweb.jcu.edu.sg/" +
                                                          "BuddyTracker/buddy_insert.php?";
@@ -66,8 +63,8 @@ public class JoinUs extends ActionBarActivity  {
                                                      GetLocationTask locationTask = new GetLocationTask(JoinUs.this);
                                                      locationTask.execute(url);
                                                  } else {
-                                                     Toast.makeText(getApplicationContext(),
-                                                             "Please Fill Both the Fields", Toast.LENGTH_LONG).show();
+                                                     Utility.showCustomAlert(getLayoutInflater(),getApplicationContext(),
+                                                             false,"Please Fill Both the Fields");
                                                  }
                                              }
                                          }
@@ -94,8 +91,8 @@ public class JoinUs extends ActionBarActivity  {
                 }
             });
         }else {
-            Toast.makeText(getApplicationContext(),
-                    "Please Turn on Wifi/3g",Toast.LENGTH_LONG).show();
+            Utility.showCustomAlert(getLayoutInflater(),getApplicationContext(),
+                    false,"Please Turn on Wifi/3g");
         }
     }
 
@@ -151,9 +148,11 @@ public class JoinUs extends ActionBarActivity  {
                 btnJoinUs.setVisibility(View.GONE);
                 btnAddBuddies.setVisibility(View.VISIBLE);
                 savePreference();
-                Toast.makeText(getApplicationContext(),"Reg Success",Toast.LENGTH_LONG).show();
+                Utility.showCustomAlert(getLayoutInflater(),getApplicationContext(),
+                        true,"Welcome Buddy");
             }else {
-                Toast.makeText(getApplicationContext(), "Reg Failed", Toast.LENGTH_LONG).show();
+                Utility.showCustomAlert(getLayoutInflater(),getApplicationContext(),
+                        false,"Registration Failed");
             }
         }
 

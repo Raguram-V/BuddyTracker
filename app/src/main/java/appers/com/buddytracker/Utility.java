@@ -1,5 +1,6 @@
 package appers.com.buddytracker;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Address;
@@ -11,6 +12,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -28,7 +35,7 @@ import java.util.Locale;
 /**
  * Created by User on 4/6/2015.
  */
-public class Utility {
+public class Utility extends Activity {
 
     public static boolean shareLocation = true;
     public static final String LOCATION_UPDATE_URL=
@@ -67,6 +74,29 @@ public class Utility {
     public static SharedPreferences getStoredPreference(Context context){
         SharedPreferences pref = context.getSharedPreferences("User", Context.MODE_PRIVATE);
         return pref;
+    }
+
+    public static void showCustomAlert(LayoutInflater inflater, Context context, boolean status, String msg) {
+
+        // Call toast.xml file for toast layout
+        View toastRoot = inflater.inflate(R.layout.toast, null);
+
+        ImageView statusImg = (ImageView) toastRoot.findViewById(R.id.statusImg);
+        TextView statusMsg = (TextView) toastRoot.findViewById(R.id.errorMsg);
+
+        if (status) {
+            statusImg.setImageResource(R.drawable.tick);
+        } else {
+            statusImg.setImageResource(R.drawable.error);
+        }
+        statusMsg.setText(msg);
+
+        Toast toast = new Toast(context);
+        toast.setView(toastRoot);
+        toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,
+                0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.show();
     }
 
     public static String getStoredUser(Context context){
@@ -159,4 +189,5 @@ public class Utility {
             return false;
         }
     }
+
 }

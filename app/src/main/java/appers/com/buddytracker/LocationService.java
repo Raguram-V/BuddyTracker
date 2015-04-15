@@ -39,7 +39,7 @@ public class LocationService extends Service implements LocationListener{
         LocationManager lManager = (LocationManager) getApplicationContext()
                 .getSystemService(Context.LOCATION_SERVICE);
         String provider = LocationManager.NETWORK_PROVIDER;
-        lManager.requestLocationUpdates(provider,10000,0f,this);
+        lManager.requestLocationUpdates(provider,0,0,this);
         return Service.START_NOT_STICKY;
     }
 
@@ -65,6 +65,7 @@ public class LocationService extends Service implements LocationListener{
     private class UpdateLocationTask extends AsyncTask<String,Void,Void> {
         @Override
         protected Void doInBackground(String... params) {
+            Log.i("receiver",params[0]);
             Utility.sendServerRequest(params[0]);
             return null;
         }
