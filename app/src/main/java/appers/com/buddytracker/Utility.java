@@ -26,9 +26,12 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -93,8 +96,7 @@ public class Utility extends Activity {
 
         Toast toast = new Toast(context);
         toast.setView(toastRoot);
-        toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,
-                0, 0);
+        toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
         toast.setDuration(Toast.LENGTH_LONG);
         toast.show();
     }
@@ -140,11 +142,11 @@ public class Utility extends Activity {
         return strLocation;
     }
 
-    public static String sendServerRequest(String url) {
-
+    public static String getJsonResponse(String strUrl) {
         HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet(url);
+        HttpGet request = new HttpGet(strUrl);
         HttpResponse response;
+        String strResponse = null;
         try {
             response = client.execute(request);
             StatusLine statusLine = response.getStatusLine();
@@ -152,23 +154,55 @@ public class Utility extends Activity {
             Log.i("response", String.valueOf(statusCode));
             if (statusCode == 200) {
                 HttpEntity httpEntity = response.getEntity();
-                String strResponse = EntityUtils.toString(httpEntity);
-                //String strResponse = response.toString();
-                Log.i("respone", strResponse);
-                if (parseJson(strResponse)) {
-                    Log.i("receiver","pass");
-                    return "true";
-                } else {
-                    return "false";
-                }
+                strResponse = EntityUtils.toString(httpEntity);
+                return strResponse;
             } else {
                 Log.i("response", "poor status");
-                return "false";
+                return strResponse;
             }
         } catch (Exception e) {
             Log.e("myApp", Log.getStackTraceString(e));
-            return "false";
+            return strResponse;
         }
+    }
+
+    public static ArrayList<String> getBuddyListFromJson(String strResponse) {
+        ArrayList<String> buddyList = new ArrayList<String>();
+        try {
+            JSONObject jsonObject = new JSONObject(strResponse);
+            JSONArray jsonArray = jsonObject.getJSONArray("buddies");
+            for (int i = 0;i<jsonArray.length();i++){
+                JSONObject jsonBuddies = jsonArray.getJSONObject(i);
+                String buddyName = jsonBuddies.getString("buddy_id");
+                buddyList.add(buddyName);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return buddyList;
+    }
+
+    public static ArrayList<String> getBuddyListFromServer(String strUrl) {
+        String strJson = getJsonResponse(strUrl);
+        ArrayList<String> buddyList = new ArrayList<String>();
+        if (strJson != null) {
+            buddyList = getBuddyListFromJson(strJson);
+        }
+        return buddyList;
+    }
+
+    public static String sendServerRequest(String url) {
+         String strJson = getJsonResponse(url);
+         if (strJson != null) {
+             Log.i("respone", strJson);
+             if (parseJson(strJson)) {
+                 Log.i("receiver","pass");
+                 return "true";
+             } else {
+                 return "false";
+             }
+         }else
+             return "false";
     }
 
 

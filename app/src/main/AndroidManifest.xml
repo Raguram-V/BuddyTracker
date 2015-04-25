@@ -20,11 +20,11 @@
         </activity>
         <activity
             android:name=".BuddyLocator"
-            android:label="BuddyList" >
+            android:label=" BuddyList" >
         </activity>
         <activity
             android:name=".AddBuddy"
-            android:label="@string/title_activity_add_buddy" >
+            android:label= " Add Buddies">
         </activity>
         <activity
             android:name=".splash_screen"
