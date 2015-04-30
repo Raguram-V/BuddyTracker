@@ -166,6 +166,35 @@ public class Utility extends Activity {
         }
     }
 
+    public static ArrayList<BuddyLocation> getBuddyLocationFromServer(String strUrl) {
+        String strJson = getJsonResponse(strUrl);
+        ArrayList<BuddyLocation> buddyLocation = new ArrayList<BuddyLocation>();
+        if (strJson != null) {
+            buddyLocation = getBuddyLocationFromJson(strJson);
+        }
+        return buddyLocation;
+    }
+
+    public static ArrayList<BuddyLocation> getBuddyLocationFromJson(String strResponse) {
+        Log.i("jresponse",strResponse);
+        ArrayList<BuddyLocation> buddyLocation = new ArrayList<BuddyLocation>();
+        try {
+            JSONObject jsonObject = new JSONObject(strResponse);
+            JSONArray jsonArray = jsonObject.getJSONArray("buddies");
+            for (int i = 0;i<jsonArray.length();i++){
+                JSONObject jsonBuddies = jsonArray.getJSONObject(i);
+                buddyLocation.add(new BuddyLocation
+                        (jsonBuddies.getString("buddy_id"),jsonBuddies.getString("location")));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        for (BuddyLocation s:buddyLocation)
+            Log.i("BLoc",s.getbName() + " " + s.getLocation());
+
+        return buddyLocation;
+    }
+
     public static ArrayList<String> getBuddyListFromJson(String strResponse) {
         ArrayList<String> buddyList = new ArrayList<String>();
         try {

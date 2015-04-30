@@ -1,16 +1,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="appers.com.buddytracker.BuddyLocator">
+    tools:context="appers.com.buddytracker.BuddyList">
     <item android:id="@+id/refreshLocation"
-        android:icon="@drawable/refresh_location"
+        android:icon="@mipmap/refresh"
         android:title="Refresh"
         android:orderInCategory="75"
         app:showAsAction="always" />
 
     <item android:id="@+id/addBuddy"
-        android:icon="@drawable/addbuddy"
+        android:icon="@mipmap/add"
         android:title="Add"
         android:orderInCategory="100"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/delBuddy"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Delete"
+        android:orderInCategory="150"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/settings"
+        android:title="Settings"
+        android:icon="@mipmap/settings"
+        android:orderInCategory="200"
         app:showAsAction="always" />
 </menu>

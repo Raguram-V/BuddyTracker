@@ -3,6 +3,7 @@ package appers.com.buddytracker;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
@@ -50,7 +51,7 @@ public class AddBuddy extends ActionBarActivity {
                     dbHelper = new BuddyDB(AddBuddy.this);
                     if(!(dbHelper.isBuddyExist(adapter.getItem(position)))) {
                         if (dbHelper.addBuddy(adapter.getItem(position))) {
-                            btnTrackBuddies.setVisibility(View.VISIBLE);
+                            //btnTrackBuddies.setVisibility(View.VISIBLE);
                             Utility.showCustomAlert(getLayoutInflater(), getApplicationContext(),
                                     true, "New Buddy Added Successfully");
                         } else {
@@ -69,14 +70,9 @@ public class AddBuddy extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     //Take the user Buddy List screen
-                    dbHelper = new BuddyDB(AddBuddy.this);
-                    ArrayList<String> bus = dbHelper.getBuddies();
-                    String str="";
-                    for(String s:bus){
-                        str = str + " " + s;
-                    }
-                    Utility.showCustomAlert(getLayoutInflater(), getApplicationContext(),
-                            true, str);
+                    Intent intent = new Intent(AddBuddy.this,BuddyList.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
         }

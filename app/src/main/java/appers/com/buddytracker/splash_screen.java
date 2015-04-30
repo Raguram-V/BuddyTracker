@@ -20,7 +20,7 @@ public class splash_screen extends ActionBarActivity {
         if (Utility.isConnected(this)) {
             boolean res = Utility.loadPreference(getApplicationContext());
             if (res) {
-                Intent intent = new Intent(this,AddBuddy.class);
+                Intent intent = new Intent(this,BuddyList.class);
                 startActivity(intent);
             } else {
                 Intent intent = new Intent(this,JoinUs.class);

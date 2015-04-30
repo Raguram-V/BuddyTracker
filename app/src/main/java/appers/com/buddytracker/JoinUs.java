@@ -27,10 +27,6 @@ public class JoinUs extends ActionBarActivity  {
     ToggleButton btnShareLocation;
 
     ProgressDialog mProgressDialog;
-    //LayoutInflater inflater = getLayoutInflater();
-
-    //String url = "http://jc305806.studentweb.jcu.edu.sg/BuddyTracker/buddy_insert.php?";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

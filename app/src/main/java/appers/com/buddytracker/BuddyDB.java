@@ -91,7 +91,11 @@ public class BuddyDB extends SQLiteOpenHelper {
 
     public boolean deleteBuddies(ArrayList<String> buddies){
         SQLiteDatabase sdb = getWritableDatabase();
-        int delRows = sdb.delete(TABLE_BUDDIES,BUDDY_NAME,(String[]) buddies.toArray());
+        String []arrBuddies = new String[buddies.size()];
+        for(int i = 0;i<buddies.size();i++){
+            arrBuddies[i] = buddies.get(i);
+        }
+        int delRows = sdb.delete(TABLE_BUDDIES,BUDDY_NAME + "=?",arrBuddies);
         sdb.close();
         if (delRows > 0) {
             return true;

@@ -6,4 +6,6 @@
     <string name="title_activity_buddy_locator">BuddyLocator</string>
     <string name="title_activity_add_buddy">AddBuddy</string>
     <string name="title_activity_splash_screen">splash_screen</string>
+    <string name="title_activity_deletebuddies">DeleteBuddies</string>
+    <string name="title_activity_settings">Settings</string>
 </resources>
