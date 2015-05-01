@@ -1,6 +1,7 @@
 package appers.com.buddytracker;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
@@ -27,9 +28,8 @@ public class Deletebuddies extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deletebuddies);
 
-        getSupportActionBar().setLogo(R.drawable.btlogo);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        ActionBar actionbar = getSupportActionBar();
+        Utility.confActionBar(actionbar);
 
         buildBuddyList();
 

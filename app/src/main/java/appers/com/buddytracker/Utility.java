@@ -11,6 +11,8 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -173,6 +175,12 @@ public class Utility extends Activity {
             buddyLocation = getBuddyLocationFromJson(strJson);
         }
         return buddyLocation;
+    }
+
+    public static void confActionBar(ActionBar aBar){
+        aBar.setLogo(R.drawable.btlogo);
+        aBar.setDisplayUseLogoEnabled(true);
+        aBar.setDisplayShowHomeEnabled(true);
     }
 
     public static ArrayList<BuddyLocation> getBuddyLocationFromJson(String strResponse) {

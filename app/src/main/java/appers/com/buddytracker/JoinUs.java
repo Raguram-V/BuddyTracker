@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,9 +34,8 @@ public class JoinUs extends ActionBarActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_us);
 
-        getSupportActionBar().setLogo(R.drawable.btlogo);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        ActionBar actionbar = getSupportActionBar();
+        Utility.confActionBar(actionbar);
 
         if (Utility.isConnected(getApplicationContext())) {
             editBuddyId = (EditText) this.findViewById(R.id.editBuddyId);

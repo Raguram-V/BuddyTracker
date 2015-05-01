@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -54,9 +55,8 @@ public class BuddyList extends ActionBarActivity {
 
     private void getBuddyList() {
 
-        getSupportActionBar().setLogo(R.drawable.btlogo);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        ActionBar actionbar = getSupportActionBar();
+        Utility.confActionBar(actionbar);
 
         sText = (EditText) findViewById(R.id.searchText);
         noMatch = (TextView)findViewById(R.id.textNoMatch);

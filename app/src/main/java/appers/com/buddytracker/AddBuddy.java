@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,9 +35,8 @@ public class AddBuddy extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_buddy);
 
-        getSupportActionBar().setLogo(R.drawable.btlogo);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        ActionBar actionbar = getSupportActionBar();
+        Utility.confActionBar(actionbar);
 
         if (Utility.isConnected(getApplicationContext())) {
             buddyId = (AutoCompleteTextView) this.findViewById(R.id.editBuddyId);
