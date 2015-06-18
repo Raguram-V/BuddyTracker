@@ -15,8 +15,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -39,12 +41,12 @@ public class BuddyList extends ActionBarActivity {
 
     TextView noMatch;
     TextView textError;
+    ImageView imgSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buddy_locator);
-        //getBuddyList();
     }
 
     @Override
@@ -61,11 +63,13 @@ public class BuddyList extends ActionBarActivity {
         sText = (EditText) findViewById(R.id.searchText);
         noMatch = (TextView)findViewById(R.id.textNoMatch);
         textError = (TextView) this.findViewById(R.id.textError);
+        imgSearch = (ImageView) this.findViewById(R.id.imageView);
+        imgSearch.setImageResource(R.mipmap.search);
+        buddyList = (ListView) findViewById(R.id.buddyList);
 
         dbHelper = new BuddyDB(this);
         bList = dbHelper.getBuddies();
         if (bList.size() > 0) {
-            buddyList = (ListView) findViewById(R.id.buddyList);
             for (String strName : bList) {
                 bNames = bNames + strName + "-";
             }
@@ -78,10 +82,18 @@ public class BuddyList extends ActionBarActivity {
             buddyList.setVisibility(View.INVISIBLE);
             textError.setVisibility(View.VISIBLE);
         }
+        buddyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent sendIntent = new Intent(BuddyList.this,message.class);
+                startActivity(sendIntent);
+            }
+        });
     }
 
 
     private void searchBuddies() {
+
 
         sText.addTextChangedListener(new TextWatcher() {
             @Override

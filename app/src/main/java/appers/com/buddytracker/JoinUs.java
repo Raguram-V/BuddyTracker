@@ -3,6 +3,7 @@ package appers.com.buddytracker;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -71,6 +72,8 @@ public class JoinUs extends ActionBarActivity  {
                 @Override
                 public void onClick(View v) {
                     //Intent to AddBuddy page
+                    Intent intent = new Intent(JoinUs.this,AddBuddy.class);
+                    startActivity(intent);
                     finish();
                 }
             });

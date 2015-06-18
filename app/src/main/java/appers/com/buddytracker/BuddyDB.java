@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -89,18 +90,20 @@ public class BuddyDB extends SQLiteOpenHelper {
         return buddies;
     }
 
-    public boolean deleteBuddies(ArrayList<String> buddies){
+    public void deleteBuddies(ArrayList<String> buddies) throws SQLException {
         SQLiteDatabase sdb = getWritableDatabase();
         String []arrBuddies = new String[buddies.size()];
+        boolean flag = true;
         for(int i = 0;i<buddies.size();i++){
             arrBuddies[i] = buddies.get(i);
         }
-        int delRows = sdb.delete(TABLE_BUDDIES,BUDDY_NAME + "=?",arrBuddies);
+
+        //int delRows = sdb.delete(TABLE_BUDDIES,BUDDY_NAME + "=?",arrBuddies);
+        for(String str: arrBuddies) {
+            String qry = "Delete from " + TABLE_BUDDIES + " Where " + BUDDY_NAME + " = '" + str +"'";
+            sdb.execSQL(qry);
+        }
         sdb.close();
-        if (delRows > 0) {
-            return true;
-        }else
-            return false;
     }
 
 }

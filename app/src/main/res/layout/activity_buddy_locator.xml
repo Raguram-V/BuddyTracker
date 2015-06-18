@@ -8,14 +8,25 @@
     android:background="@drawable/color"
     >
 
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageView"
+        android:layout_marginLeft="20dp"
+        android:layout_above="@+id/buddyList"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="42dp"
+    />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Search your buddies"
-        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_marginLeft="10dp"
         android:id="@+id/searchText"
-        android:layout_centerHorizontal="true"
-         />
+    />
 
     <ListView
         android:layout_width="match_parent"
@@ -23,7 +34,8 @@
         android:id="@+id/buddyList"
         android:layout_below="@+id/searchText"
         android:layout_marginTop="20dp"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+    />
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,7 +46,8 @@
         android:id="@+id/textError"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-         />
+    />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +57,6 @@
         android:visibility="gone"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-         />
-
+    />
 
 </RelativeLayout>

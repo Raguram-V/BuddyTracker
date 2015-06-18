@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -49,14 +50,15 @@ public class Deletebuddies extends ActionBarActivity {
                         if (chkBuddies.valueAt(i))
                             removeList.add(adapter.getItem(position));
                     }
-                    if(dbHelper.deleteBuddies(removeList)) {
+                    try {
+                        dbHelper.deleteBuddies(removeList);
                         Utility.showCustomAlert(getLayoutInflater(), getApplicationContext(),
                                 true, "Buddy Removal Successful");
                         buildBuddyList();
-                    }
-                    else
+                    }catch(SQLException s){
                         Utility.showCustomAlert(getLayoutInflater(),getApplicationContext(),
                                 false,"Buddy Removal Failed");
+                    }
                 }
             }
         });
